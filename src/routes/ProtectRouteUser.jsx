@@ -16,6 +16,7 @@ const ProtectRouteUser = ({ element }) => {
       console.log("RUN...");
       try {
         const response = await current_user();
+        console.log(response);
         if (response.status === 401 || response.status === 403) {
           navigate("/login");
           return;
