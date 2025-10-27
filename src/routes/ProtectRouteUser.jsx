@@ -6,42 +6,11 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const ProtectRouteUser = ({ element }) => {
+  
   const [ok, setOk] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const fetchProfile = async () => {
-  //     console.log("RUN...");
-  //     try {
-  //       const response = await current_user();
-  //       console.log(response);
-  //       if (response.status === 401 || response.status === 403) {
-  //         navigate("/login");
-  //         return;
-  //       }
-  //       if (response.statusText === "OK") {
-  //         setOk(true);
-  //       } else {
-  //         setError(response.data.message);
-  //         setOk(false);
-  //       }
-  //     } catch (err) {
-  //       setError("เกิดข้อผิดพลาดในการดึงข้อมูล");
-  //       console.log("Error fetching profile:", err?.response?.statusText);
-  //       if (err?.response?.status === 401 || err?.response?.status === 403) {
-  //         toast.info("กรุณาเข้าสู่ระบบใหม่");
-  //         navigate("/login");
-  //         return;
-  //       }
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProfile();
-  // }, []);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -49,8 +18,8 @@ const ProtectRouteUser = ({ element }) => {
         await current_user();
         setOk(true);
       } catch (err) {
-        console.log("Error fetching profile:", err?.response?.status);
-        if (err?.response?.status === 401 || err?.response?.status === 403) {
+        const status = err?.response?.status;
+        if (status === 401 || status === 403) {
           toast.info("เซสชั่นหมดอายุ กรุณาเข้าสู่ระบบใหม่");
           navigate("/login");
         } else {
