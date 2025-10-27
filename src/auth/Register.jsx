@@ -42,7 +42,7 @@ const Register = () => {
           src="https://cdn-icons-png.flaticon.com/128/17241/17241957.png"
           className="mx-auto h-15 w-auto"
         />
-        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
+        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight">
           Register
         </h2>
       </div>
@@ -52,7 +52,7 @@ const Register = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm/6 font-medium text-gray-100"
+              className="block text-sm/6 font-medium"
             >
               Full Name
             </label>
@@ -64,7 +64,7 @@ const Register = () => {
                 value={registerData.display_name}
                 onChange={onChangeRegisterData}
                 required
-                className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                className="border block w-full rounded-md bg-white/5 px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
               />
             </div>
           </div>
@@ -72,7 +72,7 @@ const Register = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm/6 font-medium text-gray-100"
+              className="block text-sm/6 font-medium"
             >
               Email address
             </label>
@@ -85,7 +85,7 @@ const Register = () => {
                 onChange={onChangeRegisterData}
                 required
                 autoComplete="email"
-                className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                className="border block w-full rounded-md bg-white/5 px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
               />
             </div>
           </div>
@@ -94,7 +94,7 @@ const Register = () => {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="block text-sm/6 font-medium text-gray-100"
+                className="block text-sm/6 font-medium"
               >
                 Password
               </label>
@@ -108,7 +108,7 @@ const Register = () => {
                 onChange={onChangeRegisterData}
                 required
                 autoComplete="current-password"
-                className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                className="border block w-full rounded-md bg-white/5 px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
               />
             </div>
           </div>
@@ -124,7 +124,7 @@ const Register = () => {
         </form>
 
         <div>
-          <p className="mt-10 text-center text-sm/6 text-gray-400">
+          <p className="mt-10 text-center text-sm/6">
             Already have an account ?{" "}
             <Link
               to={"/login"}

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Profile = () => {
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,10 +15,6 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         const response = await profile();
-        if (response.status === 401 || response.status === 403) {
-          navigate("/login");
-          return;
-        }
         if (response.statusText === "OK") {
           setUser(response.data);
         } else {
@@ -62,8 +59,8 @@ const Profile = () => {
           <p className=" font-bold">My Profile</p>
           <div className="divider"></div>
           <div>
-            <p>Full name : {user.user.display_name}</p>
-            <p>Email : {user.user.email}</p>
+            <p>Full name : {user?.user?.display_name}</p>
+            <p>Email : {user?.user?.email}</p>
           </div>
         </div>
       </div>

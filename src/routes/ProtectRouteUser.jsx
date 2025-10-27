@@ -46,12 +46,10 @@ const ProtectRouteUser = ({ element }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await current_user();
-        console.log(response);
+        await current_user();
         setOk(true);
       } catch (err) {
         console.log("Error fetching profile:", err?.response?.status);
-
         if (err?.response?.status === 401 || err?.response?.status === 403) {
           toast.info("เซสชั่นหมดอายุ กรุณาเข้าสู่ระบบใหม่");
           navigate("/login");
