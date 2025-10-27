@@ -27,10 +27,14 @@ const Register = () => {
     }
     try {
       const response = await register(registerData);
-      console.log(response.data);
+
+      if(response.status == 200) {
+        return toast.success("Registration successful. Please login.");
+      }
+
     } catch (error) {
       console.log(error.response);
-      alert(error.response.data.message);
+      toast.success(error.response.data.message);
     }
   };
 

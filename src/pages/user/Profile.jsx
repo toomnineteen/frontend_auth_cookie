@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Profile = () => {
-
+  
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,10 +15,8 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         const response = await profile();
-        if (response.statusText === "OK") {
+        if (response.data) {
           setUser(response.data);
-        } else {
-          setError(response.data.message);
         }
       } catch (err) {
         setError("เกิดข้อผิดพลาดในการดึงข้อมูล");
