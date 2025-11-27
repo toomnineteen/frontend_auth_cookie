@@ -1,22 +1,22 @@
 import { useState } from "react";
-import { login } from "../api/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAuthCookie from "../store/authCookieStore";
 
 export default function Login() {
 
+  const actionLogin = useAuthCookie((state) => state.actionLogin);
   const navigate = useNavigate();
-  const [loading,setLoading] = useState(false)
-
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
-  const handleChange = (e) =>setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!form.email || !form.password) return
+    if (!form.email || !form.password) return;
     try {
-      setLoading(true)
-      const response = await login(form);
+      setLoading(true);
+      const response = await actionLogin(form);
       if (response.status === 200) {
         toast.success("Logged in");
         navigate("/user");
@@ -26,8 +26,8 @@ export default function Login() {
     } catch (err) {
       console.log(err);
       toast.info(err?.response?.data?.message || "login failed");
-    } finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,7 +49,7 @@ export default function Login() {
           onChange={handleChange}
         />
         <button className="btn btn-outline w-full border" type="submit">
-           {loading ? "login...." : "login"}
+          {loading ? "login...." : "login"}
         </button>
       </form>
     </div>

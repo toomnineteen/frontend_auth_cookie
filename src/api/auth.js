@@ -15,15 +15,26 @@ export const login = async (data) => {
 };
 
 export const logout = async () => {
-  return axios.post(
-    `${import.meta.env.VITE_BASE_URL}/api/auth/logout`,
-    {},
-    { withCredentials: true }
-  );
+  try {
+    return await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/api/auth/logout`,
+      {},
+      { withCredentials: true }
+    );
+  } catch (err) {
+    console.error("Logout error:", err);
+    throw err;
+  }
 };
 
-export const profile = async () => {
-  return axios.get(`${import.meta.env.VITE_BASE_URL}/api/auth/me`, {
-    withCredentials: true,
-  });
+export const profile = async (token) => {
+  return axios.post(
+    `${import.meta.env.VITE_BASE_URL}/api/auth/me`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };

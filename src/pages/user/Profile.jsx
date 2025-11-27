@@ -3,19 +3,19 @@ import { useEffect, useState } from "react";
 import { profile } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAuthCookie from "../../store/authCookieStore";
 
 const Profile = () => {
-  
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const token = useAuthCookie((state) => state.token);
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await profile();
-        console.log(response.data);
+        const response = await profile(token);
         if (response.status === 200) {
           setUser(response.data);
         }

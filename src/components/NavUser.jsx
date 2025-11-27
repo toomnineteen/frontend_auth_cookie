@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
-import { logout } from "../api/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAuthCookie from "../store/authCookieStore";
 
 const NavUser = () => {
+  
+  const actionLogout = useAuthCookie((state) => state.actionLogout);
+
   const url = [
     {
       url: "/user",
@@ -19,8 +22,7 @@ const NavUser = () => {
 
   async function handle_logout() {
     try {
-      const response = await logout();
-      console.log(response)
+      const response = await actionLogout();
       if (response.status === 200) {
         navigate("/login");
         toast.success("ออกจากระบบ");
