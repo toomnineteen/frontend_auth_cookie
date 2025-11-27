@@ -6,15 +6,17 @@ import { toast } from "react-toastify";
 export default function Login() {
 
   const navigate = useNavigate();
+  const [loading,setLoading] = useState(false)
 
   const [form, setForm] = useState({ email: "", password: "" });
   const handleChange = (e) =>setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!form.email || !form.password) return
     try {
+      setLoading(true)
       const response = await login(form);
-      console.log(response);
       if (response.status === 200) {
         toast.success("Logged in");
         navigate("/user");
@@ -23,7 +25,9 @@ export default function Login() {
       }
     } catch (err) {
       console.log(err);
-      toast.info(err.response.data.message);
+      toast.info(err?.response?.data?.message || "login failed");
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -45,7 +49,7 @@ export default function Login() {
           onChange={handleChange}
         />
         <button className="btn btn-outline w-full border" type="submit">
-          Login
+           {loading ? "login...." : "login"}
         </button>
       </form>
     </div>

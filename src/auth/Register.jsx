@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Register() {
-
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
     display_name: "",
@@ -13,21 +13,23 @@ export default function Register() {
     email: "",
   });
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await register(form);
-      console.log(response);
       if (response.status === 201) {
-        toast.success(response.data.message)
+        toast.success(response?.data?.message || "register success");
         return navigate("/login");
       }
     } catch (err) {
       console.log(err);
-      toast.info(err.response.data.message)
+      toast.info(err?.response?.data?.message || "register failed");
     }
+    setLoading(false);
   };
 
   return (
@@ -54,7 +56,7 @@ export default function Register() {
           onChange={handleChange}
         />
         <button className="btn btn-outline w-full" type="submit">
-          Register
+          {loading ? "Register...." : "Register"}
         </button>
       </form>
     </div>
