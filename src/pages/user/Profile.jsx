@@ -15,7 +15,8 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         const response = await profile();
-        if (response.data) {
+        console.log(response.data);
+        if (response.status === 200) {
           setUser(response.data);
         }
       } catch (err) {
@@ -35,7 +36,7 @@ const Profile = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center capitalize">Loading...</div>;
+    return <div className="text-center capitalize"></div>;
   }
 
   if (error) {
@@ -57,8 +58,11 @@ const Profile = () => {
           <p className=" font-bold">My Profile</p>
           <div className="divider"></div>
           <div>
-            <p>Full name : {user?.user?.display_name}</p>
+            <p>Full name : {user?.user?.name}</p>
             <p>Email : {user?.user?.email}</p>
+            <p>Role : {user?.user?.role}</p>
+            <p>createdAt : {user?.user?.createdAt}</p>
+            <p>updatedAt : {user?.user?.updatedAt}</p>
           </div>
         </div>
       </div>

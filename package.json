@@ -1,7 +1,8 @@
 {
-  "name": "client",
+  "name": "auth-system",
   "private": true,
   "version": "0.0.0",
+  "description": "Authentication system with Node.js, Express, MongoDB",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Register() {
+
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
-    display_name: "",
+    name: "",
     password: "",
     email: "",
   });
@@ -38,8 +39,8 @@ export default function Register() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           className="input border w-full"
-          name="display_name"
-          placeholder="display_name"
+          name="name"
+          placeholder="name"
           onChange={handleChange}
         />
         <input

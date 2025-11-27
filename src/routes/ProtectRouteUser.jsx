@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import { current_user } from "../api/auth";
+import { profile } from "../api/auth";
 import LoadingToRedirect from "./LoadingToRedirect";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -14,8 +14,11 @@ const ProtectRouteUser = ({ element }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        await current_user();
-        setOk(true);
+        const response = await profile();
+        console.log("Protect", response);
+        if (response.status === 200) {
+          return setOk(true);
+        }
       } catch (err) {
         const status = err?.response?.status;
         if (status === 401 || status === 403) {

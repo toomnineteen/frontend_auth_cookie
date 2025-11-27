@@ -20,6 +20,7 @@ const NavUser = () => {
   async function handle_logout() {
     try {
       const response = await logout();
+      console.log(response)
       if (response.status === 200) {
         navigate("/login");
         toast.success("ออกจากระบบ");
