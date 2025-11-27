@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const ProtectRouteUser = ({ element }) => {
-  
   const [ok, setOk] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -37,11 +36,11 @@ const ProtectRouteUser = ({ element }) => {
   }, []);
 
   if (loading) {
-    return <div className="text-center">กำลังโหลดข้อมูล...</div>;
+    return <div className="text-center p-8">Loading....</div>;
   }
 
   if (error) {
-    return <div className="text-center">มีข้อผิดพลาด: {error}</div>;
+    return <div className="text-center">มีข้อผิดพลาด : {error}</div>;
   }
 
   return ok ? element : <LoadingToRedirect />;
