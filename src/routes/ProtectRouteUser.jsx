@@ -5,6 +5,7 @@ import LoadingToRedirect from "./LoadingToRedirect";
 import { useNavigate } from "react-router-dom";
 
 const ProtectRouteUser = ({ element }) => {
+
   const [ok, setOk] = useState(false);
   const user = useAuthCookie((state) => state.user);
   const token = useAuthCookie((state) => state.token);

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 const LoadingToRedirect = () => {
-  
   const [count, setCount] = useState(5);
   const [redirect, setRedirect] = useState(false);
 
@@ -24,7 +23,13 @@ const LoadingToRedirect = () => {
     return <Navigate to={"/"} />;
   }
 
-  return <div>No Permission, Redirect in {count}</div>;
+  return (
+    <div className="mt-19">
+      <p className="text-center text-xs uppercase">
+        No Permission, Redirect in {count}
+      </p>
+    </div>
+  );
 };
 
 export default LoadingToRedirect;

@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import axios from "axios";
-import { logout } from "../api/auth";
 
 const authCookieStore = (set) => ({
   user: null,
@@ -9,13 +8,11 @@ const authCookieStore = (set) => ({
 
   actionLogout: async () => {
     try {
-      const response = await logout();
       localStorage.removeItem("token");
       set({
         user: null,
         token: null,
       });
-      return response;
     } catch (err) {
       console.error("Logout failed:", err);
     }

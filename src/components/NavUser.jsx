@@ -22,12 +22,10 @@ const NavUser = () => {
 
   async function handle_logout() {
     try {
-      const response = await actionLogout();
-      if (response.status === 200) {
-        navigate("/login");
-        toast.success("ออกจากระบบ");
-        return;
-      }
+      actionLogout();
+      navigate("/login");
+      toast.success("ออกจากระบบ");
+      return;
     } catch (error) {
       console.log("Error fetching data:", error?.response);
     }
