@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { read_users } from "../../api/auth";
 
 const PageHomeUser = () => {
+  
   const [users, setUsers] = useState([]);
 
   async function fetch_users() {

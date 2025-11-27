@@ -42,7 +42,7 @@ const Nav = () => {
               </svg>
             </label>
           </div>
-          <div className="mx-2 flex-1 px-2">AI</div>
+          <div className="mx-2 flex-1 px-2">DEMO</div>
           <div className="hidden flex-none lg:block">
             <ul className="menu menu-horizontal capitalize">
               {url.map((u, i) => (
